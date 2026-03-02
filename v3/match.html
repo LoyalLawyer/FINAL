@@ -449,7 +449,7 @@ async function runMatch() {
     '11. Sectors: ' + (ans['a10'] || 'not provided') + '\n' +
     '12. Additional context: ' + (ans['a11'] || 'not provided');
 
-  var matchPrompt = 'You are a Magic Circle careers advisor. Match this student to the best Magic Circle firm.\n\n' + profile + '\n\nFirm differentiators:\n- A&O Shearman: Largest (3900 lawyers), banking/finance strength, post-merger integration, formal culture\n- Clifford Chance: Most global, capital markets/PE/disputes, tech-forward (CC Advance), open culture\n- Freshfields: Record revenues, US expansion, elite M&A/antitrust/disputes, intense intellectual culture\n- Linklaters: Debt capital markets/emerging markets leader, fastest US growth, collaborative culture\n- Slaughter and May: Smallest (~500), no billing targets, best friend network, highest PEP, collegiate culture\n\nReturn ONLY valid JSON with no markdown:\n{"top_firm":"exact name","top_pct":75,"top_tagline":"one sentence why","why_fit":"3-4 sentences referencing their actual answers","personality_insight":"2 sentences on what answers reveal","watch_out":"one honest concern","cover_letter_angle":"specific concrete angle for their cover letter","scores":{"A&O Shearman":70,"Clifford Chance":65,"Freshfields":80,"Linklaters":60,"Slaughter and May":55},"dimensions":{"Practice fit":80,"Culture match":75,"Geography":70,"Career trajectory":85,"Values":75},"second_firm":"name","second_reason":"one sentence"}';
+  var matchPrompt = 'Magic Circle firm matcher. Student: ' + profile + ' Firms: A&O Shearman(banking/finance/formal), Clifford Chance(global/capital markets/open), Freshfields(M&A/antitrust/intense), Linklaters(debt markets/emerging/collaborative), Slaughter and May(small/no billing targets/collegial). Return ONLY JSON no markdown: {"top_firm":"name","top_pct":80,"top_tagline":"why","why_fit":"2 sentences","personality_insight":"1 sentence","watch_out":"1 concern","cover_letter_angle":"1 specific angle","scores":{"A&O Shearman":70,"Clifford Chance":65,"Freshfields":80,"Linklaters":60,"Slaughter and May":55},"dimensions":{"Practice fit":80,"Culture match":75,"Geography":70,"Career trajectory":85,"Values":75},"second_firm":"name","second_reason":"why"}';
 
   var matchText, matchData, match;
 
@@ -500,7 +500,7 @@ async function runMatch() {
   var casesText = 'Case search unavailable.';
   var caseSources = [];
   try {
-    var casePrompt = 'Search for 3 real recent (2023-2025) legal cases or deals that ' + match.top_firm + ' worked on. Student interests: ' + (ans['a2'] || 'general commercial') + ', sectors: ' + (ans['a'+'10'] || 'general') + ' For each deal: name it, describe the firm role, explain why this student would find it interesting. Use real names and dates only.';
+    var casePrompt = 'Name 2 real recent deals by ' + match.top_firm + ' (2023-2025) related to ' + (ans['a2'] || 'M&A') + '. For each: deal name, year, relevance. Be concise.';
     var r2 = await fetch('/.netlify/functions/ai', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -640,3 +640,4 @@ function renderResults(match, casesText, sources) {
 </script>
 </body>
 </html>
+
