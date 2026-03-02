@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Interview Prep — MagicCircleHub</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.acc-item{background:var(--white);border:1px solid var(--border);border-radius:6px;margin-bottom:8px;overflow:hidden}
+.acc-header{padding:16px 20px;font-weight:600;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .15s}
+.acc-header:hover{background:var(--light)}
+.acc-body{display:none;padding:16px 20px;font-size:13.5px;color:#374151;line-height:1.8;border-top:1px solid var(--border)}
+.acc-body.open{display:block}
+.acc-arrow{font-size:12px;color:var(--muted);transition:transform .2s}
+.acc-arrow.open{transform:rotate(180deg)}
+.firm-section-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin:32px 0 14px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.tip-box{background:#eff6ff;border-left:4px solid #2563eb;padding:14px 18px;border-radius:0 6px 6px 0;margin:16px 0;font-size:13.5px;color:#1e40af;line-height:1.7}
+</style>
+</head>
+<body>
+<div id="nav-root"></div>
+<div class="page">
+  <div style="margin-bottom:28px">
+    <div class="section-label">Preparation</div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900">Interview Intelligence</h1>
+    <p style="color:var(--muted);margin-top:6px">The questions you will face, the answers that work, and the firm-specific angles that separate good candidates from great ones.</p>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="section-label">Universal Questions</div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">Why do you want to be a commercial lawyer? <span class="acc-arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <p><strong>What they are really asking:</strong> Do you understand what commercial law actually is — and do you genuinely want to do it, or are you here for the salary?</p>
+          <p><strong>Framework:</strong> Connect the intellectual challenge (complexity, high stakes, novel problems) with the commercial impact (deals that shape industries, clients making major decisions). Avoid cliches like "I like problem solving" without specifics.</p>
+          <p><strong>Strong answer structure:</strong> Start with a specific moment or experience that crystallised your interest — a case you read about, a work experience moment, a module. Then connect to what specifically about commercial law appeals (the transactional nature, the client relationship, the international dimension). Then tie to why this firm specifically.</p>
+          <div class="tip-box">Interviewers hear "I like problem solving and working with people" dozens of times. The candidates who progress always have a specific story that made them want this. Find yours.</div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">Tell me about a recent commercial deal or legal development that interested you <span class="acc-arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <p><strong>What they are really asking:</strong> Are you genuinely commercially curious — do you read about business and law for pleasure, or only because an application requires it?</p>
+          <p><strong>Framework:</strong> Pick something relevant to the firm you are interviewing at. Know it deeply — not just the headline, but why it happened, what the legal complexity was, and what it means going forward.</p>
+          <p><strong>Structure:</strong> (1) Describe the deal/development clearly. (2) Explain the legal angle — what made it complex? (3) Why did it interest you specifically? (4) What are the implications? This shows commercial awareness, not just news reading.</p>
+          <div class="tip-box">Do not pick a deal from two years ago. Interviewers want to know you are reading the news now — not that you prepared one example for application season.</div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">What skills does a trainee solicitor need? <span class="acc-arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <p><strong>Framework:</strong> Do not just list soft skills. Think about what trainees actually do — drafting, research, client communication, project management under time pressure. The best answers connect skills to real trainee tasks.</p>
+          <p><strong>Strong answer:</strong> Attention to detail (because a single error in a contract can have major consequences), resilience under pressure, clear written communication (drafting is the core skill), commercial judgment (understanding what the client actually needs, not just the legal answer), and intellectual curiosity to keep learning constantly.</p>
+          <p>Always give a brief example of where you have demonstrated each skill you mention.</p>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">Tell me about a time you worked under significant pressure <span class="acc-arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <p><strong>Use STAR:</strong> Situation (brief context), Task (what you needed to achieve), Action (what you specifically did — not "we"), Result (outcome and what you learned).</p>
+          <p><strong>Common mistake:</strong> Describing a stressful situation but not explaining your specific decision-making or actions. Interviewers want to see how you think and behave under pressure — not just that you survived it.</p>
+          <div class="tip-box">The best pressure examples show judgment, not just endurance. Did you prioritise tasks? Ask for help at the right time? Change approach mid-way? That is what distinguishes a good answer.</div>
+        </div>
+      </div>
+
+      <div class="firm-section-title" style="color:#C8102E">Freshfields-Specific Questions</div>
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">What do you make of our US expansion strategy? <span class="acc-arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <p>Freshfields will probe your understanding of their strategic direction. They want candidates who have thought critically about it — not just supporters.</p>
+          <p><strong>Strong answer:</strong> Acknowledge the strategic rationale (unlocking US PE and M&A clients for the European network, following US clients into their home market). Engage with the challenge (competing with established US firms on their turf is not easy — Kirkland and Latham have deep roots). Then explain what the firm is doing to succeed — specific practice hires, client wins, the culture fit challenge of merging US and European legal cultures.</p>
+        </div>
+      </div>
+
+      <div class="firm-section-title" style="color:#0047AB">A&O Shearman-Specific Questions</div>
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">How do you think the A&O / Shearman merger has gone? <span class="acc-arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <p>This is a test of whether you have actually thought about the merger — not just that it happened. Be balanced and honest.</p>
+          <p><strong>What to cover:</strong> The strategic rationale (transatlantic platform, US corporate + MC banking), early wins (US client referrals, combined deal flow), challenges (cultural integration of two distinct firms, managing 3,900 lawyers across 48 offices), and your honest assessment of where it needs to go next. Show you have read primary sources — Legal Business, The Lawyer — not just Wikipedia.</p>
+        </div>
+      </div>
+
+      <div class="firm-section-title" style="color:#2e7d32">Slaughter and May-Specific Questions</div>
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">Why do you think the best friend model works — and what are its limitations? <span class="acc-arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <p>Slaughter will probe whether you truly understand their model — not just admire it. They want intellectual engagement, not flattery.</p>
+          <p><strong>Why it works:</strong> Elite selection by not having overseas offices to fill. Deep UK M&A expertise without dilution. Client loyalty built on quality not scale. Partners who chose the firm specifically — not the highest bidder.</p>
+          <p><strong>Limitations (be honest):</strong> Dependent on best friend relationships remaining strong. Less control over international advice quality. Limited secondment options vs CC or A&O. For clients wanting one firm globally, it requires coordination.</p>
+          <div class="tip-box">Slaughter loves candidates who think critically. Giving only positive answers makes you seem sycophantic. Acknowledging genuine limitations while explaining why the model still wins shows intellectual maturity.</div>
+        </div>
+      </div>
+
+      <div class="firm-section-title" style="color:#1a1a2e">Linklaters-Specific Questions</div>
+      <div class="acc-item">
+        <div class="acc-header" onclick="toggleAcc(this)">Why are you interested in emerging markets? What do you know about Linklaters' practice? <span class="acc-arrow">&#9660;</span></div>
+        <div class="acc-body">
+          <p>If emerging markets is your angle for Linklaters, you must know the practice in detail — not just that it exists.</p>
+          <p><strong>What to know:</strong> The Egypt sovereign bond (recent deal). The African infrastructure financing work. The Middle East practice — particularly UAE and Saudi Arabia. The role of DCM in emerging market financing versus ECM. Why sovereign bonds from these markets are complex — political risk, IMF programme conditions, international investor relations across multiple jurisdictions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card card-pad widget" style="margin-bottom:16px">
+        <div class="widget-title">&#x1F4CB; Interview Format by Firm</div>
+        <div class="widget-body">
+          <div class="widget-row"><span>A&O Shearman</span><span style="font-size:12px;font-weight:600">Partner + Associate</span></div>
+          <div class="widget-row"><span>Clifford Chance</span><span style="font-size:12px;font-weight:600">2 interviews + group ex</span></div>
+          <div class="widget-row"><span>Freshfields</span><span style="font-size:12px;font-weight:600">Partner interview + case study</span></div>
+          <div class="widget-row"><span>Linklaters</span><span style="font-size:12px;font-weight:600">Partner + commercial ex</span></div>
+          <div class="widget-row"><span>Slaughter and May</span><span style="font-size:12px;font-weight:600">2 partner interviews</span></div>
+        </div>
+      </div>
+
+      <div class="card card-pad" style="margin-bottom:16px">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">&#x26A1; Quick Tips</h3>
+        <ul style="padding-left:18px;font-size:13px;color:#374151;line-height:1.8">
+          <li>Read the firm's website the morning of your interview</li>
+          <li>Have 3 recent deals ready — one per practice area you mention</li>
+          <li>Know the firm's revenue and any recent strategic news</li>
+          <li>Prepare 2-3 questions that show commercial awareness</li>
+          <li>Use STAR for every competency question</li>
+          <li>Be honest about limitations — they respect critical thinking</li>
+        </ul>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#1e3a5f,#0f1117);border-radius:6px;padding:20px;text-align:center">
+        <div style="font-size:20px;margin-bottom:8px">&#x1F3AF;</div>
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:white;margin-bottom:6px">Know your firm match first</div>
+        <p style="font-size:12.5px;color:#94a3b8;margin-bottom:14px;line-height:1.6">Our AI matches you to the right firm and tells you exactly which angle to lead with.</p>
+        <a href="match.html" style="display:block;background:#2563eb;color:white;padding:10px;border-radius:6px;font-weight:700;font-size:13px">Find My Firm &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="footer-root"></div>
+<script src="shared.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = SITE.nav('interview');
+document.getElementById('footer-root').innerHTML = SITE.footer();
+function toggleAcc(header) {
+  var body = header.nextElementSibling;
+  var arrow = header.querySelector('.acc-arrow');
+  var isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.classList.toggle('open', !isOpen);
+}
+</script>
+</body>
+</html>

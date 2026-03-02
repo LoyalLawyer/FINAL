@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TC Deadlines — MagicCircleHub</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.deadline-card{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin-bottom:12px;display:flex;align-items:center;gap:20px;transition:box-shadow .15s}
+.deadline-card:hover{box-shadow:var(--shadow-md)}
+.deadline-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.deadline-firm{font-weight:700;font-size:15px;flex:1}
+.deadline-type{font-size:12px;color:var(--muted)}
+.deadline-date{font-size:15px;font-weight:700;text-align:right;min-width:120px}
+.deadline-urgency{font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;white-space:nowrap}
+.urgent{background:#fee2e2;color:#dc2626}
+.soon{background:#fef3c7;color:#92400e}
+.open{background:#d1fae5;color:#065f46}
+</style>
+</head>
+<body>
+<div id="nav-root"></div>
+<div class="page">
+  <div style="margin-bottom:24px">
+    <div class="section-label">Application Calendar</div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900">TC &amp; Vacation Scheme Deadlines</h1>
+    <p style="color:var(--muted);margin-top:6px">All Magic Circle training contract and vacation scheme deadlines in one place. Always verify on firm websites.</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterDeadlines('all',this)">All</button>
+    <button class="filter-btn" onclick="filterDeadlines('tc',this)">Training Contracts</button>
+    <button class="filter-btn" onclick="filterDeadlines('vac',this)">Vacation Schemes</button>
+  </div>
+
+  <div id="deadlineList"></div>
+
+  <div style="margin-top:32px" class="card card-pad">
+    <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:14px">&#x1F4CB; Application Tips</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div><h4 style="font-size:13px;font-weight:700;margin-bottom:6px">Start earlier than you think</h4><p style="font-size:13px;color:var(--muted);line-height:1.7">Magic Circle applications require significant research. Allow 2-3 weeks per firm for a quality application. The commercial awareness section alone should take several hours of preparation.</p></div>
+      <div><h4 style="font-size:13px;font-weight:700;margin-bottom:6px">Vacation schemes first</h4><p style="font-size:13px;color:var(--muted);line-height:1.7">Most Magic Circle firms recruit the majority of their trainees from vacation scheme participants. A vac scheme offer often converts to a training contract offer — prioritise these applications.</p></div>
+      <div><h4 style="font-size:13px;font-weight:700;margin-bottom:6px">Apply to 3-4 firms maximum</h4><p style="font-size:13px;color:var(--muted);line-height:1.7">Quality over quantity. A strong, specific, well-researched application to three firms will outperform generic applications to all five every time.</p></div>
+      <div><h4 style="font-size:13px;font-weight:700;margin-bottom:6px">Get your AI match first</h4><p style="font-size:13px;color:var(--muted);line-height:1.7">Use our free AI firm matcher before applying. Understanding precisely why you fit a specific firm — not just that you want to work there — is the difference between a good and a great application.</p></div>
+    </div>
+  </div>
+</div>
+<div id="footer-root"></div>
+<script src="shared.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = SITE.nav('deadlines');
+document.getElementById('footer-root').innerHTML = SITE.footer();
+
+var DEADLINES = [
+  { firm:'A&O Shearman', color:'#0047AB', type:'tc', typeLabel:'Training Contract', date:'31 Jan 2026', urgency:'urgent', urgencyLabel:'Passed' },
+  { firm:'Clifford Chance', color:'#b8950a', type:'vac', typeLabel:'Summer Vac Scheme', date:'15 Jan 2026', urgency:'urgent', urgencyLabel:'Passed' },
+  { firm:'Clifford Chance', color:'#b8950a', type:'tc', typeLabel:'Training Contract', date:'15 Feb 2026', urgency:'soon', urgencyLabel:'Closing Soon' },
+  { firm:'Freshfields', color:'#C8102E', type:'vac', typeLabel:'Spring Vac Scheme', date:'31 Jan 2026', urgency:'urgent', urgencyLabel:'Passed' },
+  { firm:'Freshfields', color:'#C8102E', type:'tc', typeLabel:'Training Contract', date:'28 Feb 2026', urgency:'soon', urgencyLabel:'Closing Soon' },
+  { firm:'Linklaters', color:'#1a1a2e', type:'vac', typeLabel:'Summer Vac Scheme', date:'31 Jan 2026', urgency:'urgent', urgencyLabel:'Passed' },
+  { firm:'Linklaters', color:'#1a1a2e', type:'tc', typeLabel:'Training Contract', date:'31 Mar 2026', urgency:'open', urgencyLabel:'Open' },
+  { firm:'Slaughter and May', color:'#2e7d32', type:'vac', typeLabel:'Summer Vac Scheme', date:'28 Feb 2026', urgency:'soon', urgencyLabel:'Closing Soon' },
+  { firm:'Slaughter and May', color:'#2e7d32', type:'tc', typeLabel:'Training Contract', date:'Apr 2026', urgency:'open', urgencyLabel:'Open' }
+];
+
+var currentFilter = 'all';
+
+function filterDeadlines(type, btn) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderDeadlines();
+}
+
+function renderDeadlines() {
+  var filtered = currentFilter === 'all' ? DEADLINES : DEADLINES.filter(function(d) { return d.type === currentFilter; });
+  document.getElementById('deadlineList').innerHTML = filtered.map(function(d) {
+    return '<div class="deadline-card">' +
+      '<div class="deadline-dot" style="background:' + d.color + '"></div>' +
+      '<div><div class="deadline-firm">' + d.firm + '</div><div class="deadline-type">' + d.typeLabel + '</div></div>' +
+      '<div class="deadline-date" style="color:' + d.color + '">' + d.date + '</div>' +
+      '<span class="deadline-urgency ' + d.urgency + '">' + d.urgencyLabel + '</span>' +
+    '</div>';
+  }).join('');
+}
+
+renderDeadlines();
+</script>
+</body>
+</html>

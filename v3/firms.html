@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firm Profiles — MagicCircleHub</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.firm-tabs { display:flex; gap:4px; margin-bottom:24px; flex-wrap:wrap; }
+.firm-tab { padding:8px 18px; border-radius:99px; font-size:13px; font-weight:600; cursor:pointer; border:2px solid var(--border); background:var(--white); color:var(--muted); transition:all .15s; }
+.firm-tab:hover { border-color:var(--ink); color:var(--ink); }
+.firm-tab.active { color:white; border-color:transparent; }
+.firm-section { display:none; }
+.firm-section.active { display:block; animation:slideUp .25s ease; }
+@keyframes slideUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.firm-banner { border-radius:6px; padding:36px 40px; color:white; margin-bottom:24px; }
+.firm-banner h1 { font-family:'Playfair Display',serif; font-size:32px; font-weight:900; margin-bottom:6px; }
+.firm-banner p { font-size:14px; opacity:.85; max-width:500px; line-height:1.6; }
+.stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px; }
+.stat-box { background:var(--white); border:1px solid var(--border); border-radius:6px; padding:16px 18px; }
+.stat-val { font-family:'Playfair Display',serif; font-size:22px; font-weight:900; color:var(--ink); }
+.stat-label { font-size:11px; color:var(--muted); margin-top:2px; text-transform:uppercase; letter-spacing:1px; }
+.info-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.info-box { background:var(--white); border:1px solid var(--border); border-radius:6px; padding:20px 22px; }
+.info-box h3 { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:var(--muted); margin-bottom:12px; }
+.info-box p, .info-box li { font-size:13.5px; color:#374151; line-height:1.75; }
+.info-box ul { padding-left:16px; }
+.info-box li { margin-bottom:4px; }
+@media(max-width:700px){.stats-grid{grid-template-columns:1fr 1fr}.info-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="nav-root"></div>
+<div class="page">
+  <div style="margin-bottom:24px">
+    <div class="section-label">Magic Circle</div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900">Firm Profiles</h1>
+    <p style="color:var(--muted);margin-top:6px">Deep-dive profiles on all five Magic Circle firms — what they are really like, and what to say in your application.</p>
+  </div>
+
+  <div class="firm-tabs">
+    <button class="firm-tab active" style="background:#0047AB" onclick="showFirm('ao',this)">A&O Shearman</button>
+    <button class="firm-tab" onclick="showFirm('cc',this)">Clifford Chance</button>
+    <button class="firm-tab" onclick="showFirm('fresh',this)">Freshfields</button>
+    <button class="firm-tab" onclick="showFirm('link',this)">Linklaters</button>
+    <button class="firm-tab" onclick="showFirm('slaughter',this)">Slaughter and May</button>
+  </div>
+
+  <!-- A&O -->
+  <div class="firm-section active" id="s-ao">
+    <div class="firm-banner" style="background:linear-gradient(135deg,#0047AB,#1565C0)">
+      <h1>Allen &amp; Overy Shearman</h1>
+      <p>The largest Magic Circle firm post-merger, with unmatched strength in banking and finance and a growing transatlantic platform.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-val">3,900+</div><div class="stat-label">Lawyers</div></div>
+      <div class="stat-box"><div class="stat-val">48</div><div class="stat-label">Offices</div></div>
+      <div class="stat-box"><div class="stat-val">£150k</div><div class="stat-label">NQ Salary</div></div>
+      <div class="stat-box"><div class="stat-val">~90</div><div class="stat-label">Trainees/year</div></div>
+    </div>
+    <div class="info-grid">
+      <div class="info-box"><h3>What They Are Known For</h3><ul><li>Banking &amp; leveraged finance — genuinely world class</li><li>Project finance and infrastructure</li><li>US PE post-merger growth</li><li>Derivatives and financial products</li></ul></div>
+      <div class="info-box"><h3>Culture &amp; Trainee Life</h3><p>Formal, structured, and hierarchical. The merger has created a complex integration challenge. Trainees get excellent technical training and access to landmark finance transactions. Best for those who thrive in large, process-driven environments.</p></div>
+      <div class="info-box"><h3>Strategic Direction 2025-26</h3><p>Post-merger integration remains the defining story. The US platform is the strategic prize — unlocking Shearman's New York relationships for A&O's banking clients. Energy transition finance is a major growth area.</p></div>
+      <div class="info-box"><h3>Your Application Angle</h3><p>Show you understand the merger rationale specifically — not just "global platform". Reference A&O's banking heritage + Shearman's US corporate = true transatlantic finance powerhouse. Be specific about what this means for clients.</p></div>
+    </div>
+  </div>
+
+  <!-- CC -->
+  <div class="firm-section" id="s-cc">
+    <div class="firm-banner" style="background:linear-gradient(135deg,#92701a,#b8950a)">
+      <h1>Clifford Chance</h1>
+      <p>The most genuinely global Magic Circle firm, with world-class capital markets, private equity and disputes practices across every major financial centre.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-val">3,400+</div><div class="stat-label">Lawyers</div></div>
+      <div class="stat-box"><div class="stat-val">32</div><div class="stat-label">Offices</div></div>
+      <div class="stat-box"><div class="stat-val">£150k</div><div class="stat-label">NQ Salary</div></div>
+      <div class="stat-box"><div class="stat-val">~100</div><div class="stat-label">Trainees/year</div></div>
+    </div>
+    <div class="info-grid">
+      <div class="info-box"><h3>What They Are Known For</h3><ul><li>Capital markets — equity and debt</li><li>Private equity (rapidly growing)</li><li>High-stakes cross-border disputes</li><li>Fintech and digital assets regulation</li></ul></div>
+      <div class="info-box"><h3>Culture &amp; Trainee Life</h3><p>More open and international than the other MC firms. CC Advance (their legal tech arm) attracts innovation-minded trainees. Secondments are exceptional — the truly global network means placements in Dubai, Singapore, NYC are all realistic.</p></div>
+      <div class="info-box"><h3>Strategic Direction 2025-26</h3><p>PE growth is the headline story — the Kirkland lateral hire signals serious intent on sponsor-side work. CC Advance continues to invest in legal technology and AI tools. US market presence expanding.</p></div>
+      <div class="info-box"><h3>Your Application Angle</h3><p>CC rewards candidates who can articulate its genuine international differentiation — not just "lots of offices" but what it actually means to advise on cross-border transactions from 32 cities. Tech interest is a genuine plus here.</p></div>
+    </div>
+  </div>
+
+  <!-- Freshfields -->
+  <div class="firm-section" id="s-fresh">
+    <div class="firm-banner" style="background:linear-gradient(135deg,#C8102E,#9b0a22)">
+      <h1>Freshfields</h1>
+      <p>The Magic Circle's fastest-growing firm by revenue, with record-breaking M&A, antitrust and disputes practices and a rapidly expanding US platform.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-val">£2.1bn</div><div class="stat-label">Revenue 2025</div></div>
+      <div class="stat-box"><div class="stat-val">28</div><div class="stat-label">Offices</div></div>
+      <div class="stat-box"><div class="stat-val">£150k</div><div class="stat-label">NQ Salary</div></div>
+      <div class="stat-box"><div class="stat-val">~90</div><div class="stat-label">Trainees/year</div></div>
+    </div>
+    <div class="info-grid">
+      <div class="info-box"><h3>What They Are Known For</h3><ul><li>Elite M&A — top 5 globally by deal value</li><li>Competition/antitrust — genuinely best-in-class</li><li>High-stakes disputes and arbitration</li><li>US expansion paying dividends</li></ul></div>
+      <div class="info-box"><h3>Culture &amp; Trainee Life</h3><p>Intellectual, driven and slightly intense. Freshfields attracts people who genuinely love the complexity of the work. The culture rewards analytical rigour and commercial curiosity. Hours can be demanding but the deal quality is unmatched.</p></div>
+      <div class="info-box"><h3>Strategic Direction 2025-26</h3><p>US expansion is the dominant story — record revenues driven by transatlantic M&A. The competition practice continues to be involved in the largest global merger reviews. Disputes pipeline is strong.</p></div>
+      <div class="info-box"><h3>Your Application Angle</h3><p>Freshfields rewards commercial depth over breadth. Show you understand why US expansion matters for deal structure — not just that it happened. Analytical personality types who are drawn to the complexity of competition law thrive here.</p></div>
+    </div>
+  </div>
+
+  <!-- Linklaters -->
+  <div class="firm-section" id="s-link">
+    <div class="firm-banner" style="background:linear-gradient(135deg,#1a1a2e,#2d2d5e)">
+      <h1>Linklaters</h1>
+      <p>The unrivalled leader in debt capital markets and emerging market finance, with the fastest US revenue growth of any Magic Circle firm in 2025.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-val">3,000+</div><div class="stat-label">Lawyers</div></div>
+      <div class="stat-box"><div class="stat-val">30</div><div class="stat-label">Offices</div></div>
+      <div class="stat-box"><div class="stat-val">£150k</div><div class="stat-label">NQ Salary</div></div>
+      <div class="stat-box"><div class="stat-val">~100</div><div class="stat-label">Trainees/year</div></div>
+    </div>
+    <div class="info-grid">
+      <div class="info-box"><h3>What They Are Known For</h3><ul><li>Debt capital markets — the best in the Magic Circle</li><li>Emerging markets (Africa, Middle East, Asia)</li><li>Fastest US revenue growth 2025</li><li>34 new partners promoted in 2025</li></ul></div>
+      <div class="info-box"><h3>Culture &amp; Trainee Life</h3><p>Genuinely collaborative and less hierarchical than A&O. The emerging markets practice attracts globally-minded trainees. Strong associate progression — the 34 partner promotions in 2025 signal genuine internal opportunities.</p></div>
+      <div class="info-box"><h3>Strategic Direction 2025-26</h3><p>US growth is accelerating — the firm is investing heavily in its New York presence. Emerging markets capital markets continues to dominate, particularly in Africa and the Middle East. Sustainable finance is a growing area.</p></div>
+      <div class="info-box"><h3>Your Application Angle</h3><p>If you have emerging markets interest — language skills, personal background, sector interest — Linklaters is the standout choice. No other Magic Circle firm can match their track record in sovereign and corporate debt from emerging economies.</p></div>
+    </div>
+  </div>
+
+  <!-- Slaughter -->
+  <div class="firm-section" id="s-slaughter">
+    <div class="firm-banner" style="background:linear-gradient(135deg,#2e7d32,#1b5e20)">
+      <h1>Slaughter and May</h1>
+      <p>The Magic Circle's deliberate outlier — a small, elite firm with no billing targets, the highest profit per partner, and the deepest UK M&A expertise.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-val">~500</div><div class="stat-label">Lawyers</div></div>
+      <div class="stat-box"><div class="stat-val">3</div><div class="stat-label">Offices</div></div>
+      <div class="stat-box"><div class="stat-val">£150k</div><div class="stat-label">NQ Salary</div></div>
+      <div class="stat-box"><div class="stat-val">~85</div><div class="stat-label">Trainees/year</div></div>
+    </div>
+    <div class="info-grid">
+      <div class="info-box"><h3>What They Are Known For</h3><ul><li>Highest-quality UK M&A — the gold standard</li><li>No billing targets — culture is different as a result</li><li>Best friend network instead of global offices</li><li>Highest profit per equity partner in the MC</li></ul></div>
+      <div class="info-box"><h3>Culture &amp; Trainee Life</h3><p>Collegiate, meritocratic and genuinely different from every other firm on this list. Partners know trainees by name. The no-billing-target culture means lawyers focus on quality not hours. Highly sought after by independent thinkers who value substance over scale.</p></div>
+      <div class="info-box"><h3>Strategic Direction 2025-26</h3><p>Slaughter is intentionally not changing its model — that is the strategy. The best friend network continues to deliver elite international capability without the overhead of a global office network. Quality over quantity, always.</p></div>
+      <div class="info-box"><h3>Your Application Angle</h3><p>Do not just say you admire the quality. Explain specifically why the best friend model produces better client outcomes on complex UK M&A than a global network would — less distraction, deeper expertise, genuine independence. Show you understand the model intellectually.</p></div>
+    </div>
+  </div>
+
+</div>
+<div id="footer-root"></div>
+<script src="shared.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = SITE.nav('firms');
+document.getElementById('footer-root').innerHTML = SITE.footer();
+
+var firmColors = { ao:'#0047AB', cc:'#b8950a', fresh:'#C8102E', link:'#1a1a2e', slaughter:'#2e7d32' };
+
+function showFirm(id, btn) {
+  document.querySelectorAll('.firm-section').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('.firm-tab').forEach(function(b) { b.classList.remove('active'); b.style.background=''; b.style.color=''; });
+  document.getElementById('s-' + id).classList.add('active');
+  btn.classList.add('active');
+  btn.style.background = firmColors[id];
+  btn.style.color = 'white';
+}
+
+// Handle hash navigation
+var hash = window.location.hash.replace('#','');
+if (hash) {
+  var btn = document.querySelector('[onclick*="showFirm(\'' + hash + '\'"]');
+  if (btn) showFirm(hash, btn);
+}
+</script>
+</body>
+</html>

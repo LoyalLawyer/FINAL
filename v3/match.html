@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find My Firm — MagicCircleHub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="nav-root"></div>
+<div class="page">
+
+<div class="match-hero">
+  <div class="match-hero-label">AI Firm Matcher</div>
+  <h1>Which Magic Circle Firm is <em>Actually</em> Right for You?</h1>
+  <p>Answer 12 honest questions. Our AI matches you to the right firm, explains why, and finds real cases they worked on that align with your interests.</p>
+  <div class="match-pills">
+    <span class="match-pill">&#x1F50D; Searches real cases</span>
+    <span class="match-pill">&#x1F9E0; Psychological profiling</span>
+    <span class="match-pill">&#x270D; Cover letter angle</span>
+    <span class="match-pill">&#x1F7E2; Free</span>
+  </div>
+</div>
+
+<div class="progress-wrap" id="progressWrap">
+  <span class="progress-text">Question</span>
+  <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:8%"></div></div>
+  <span class="progress-num" id="progressNum">1 / 12</span>
+</div>
+
+<!-- Q1 -->
+<div class="q-card active" id="q0">
+  <div class="q-tag">Question 1 of 12 — Background</div>
+  <div class="q-title">What are you studying and where?</div>
+  <div class="q-sub">This helps us understand your starting point — both your subject and university matter to different firms.</div>
+  <input type="text" class="q-input" id="a0" placeholder="e.g. Law LLB, University of Bristol, 2nd year">
+  <div class="q-nav">
+    <span></span>
+    <button class="btn btn-primary btn-lg" id="next0" onclick="goNext(0)">Next &rarr;</button>
+  </div>
+</div>
+
+<!-- Q2 -->
+<div class="q-card" id="q1">
+  <div class="q-tag">Question 2 of 12 — How You Think</div>
+  <div class="q-title">A client calls at 11pm. Hostile takeover bid just landed. What is your first instinct?</div>
+  <div class="q-sub">No right answer — we are looking at how your mind works under pressure.</div>
+  <div class="options" id="a1">
+    <div class="opt" onclick="pick('a1',this,'analytical')">
+      <div class="opt-letter">A</div>
+      <div><div class="opt-title">Read the documents first</div><div class="opt-desc">I want every detail before saying anything.</div></div>
+    </div>
+    <div class="opt" onclick="pick('a1',this,'strategic')">
+      <div class="opt-letter">B</div>
+      <div><div class="opt-title">Ask about the bigger picture</div><div class="opt-desc">What does the client actually want as an outcome?</div></div>
+    </div>
+    <div class="opt" onclick="pick('a1',this,'regulatory')">
+      <div class="opt-letter">C</div>
+      <div><div class="opt-title">Think about regulatory angles</div><div class="opt-desc">Are there competition or cross-border issues that could block this?</div></div>
+    </div>
+    <div class="opt" onclick="pick('a1',this,'collaborative')">
+      <div class="opt-letter">D</div>
+      <div><div class="opt-title">Call the senior partner immediately</div><div class="opt-desc">This needs the right people in the room from the start.</div></div>
+    </div>
+  </div>
+  <div class="q-nav">
+    <button class="btn btn-outline" onclick="goPrev(1)">&larr; Back</button>
+    <button class="btn btn-primary btn-lg" onclick="goNext(1)">Next &rarr;</button>
+  </div>
+</div>
+
+<!-- Q3 -->
+<div class="q-card" id="q2">
+  <div class="q-tag">Question 3 of 12 — What Excites You</div>
+  <div class="q-title">Which headline would make you stop and read the whole article?</div>
+  <div class="q-sub">Pick the one that genuinely pulls you in most.</div>
+  <div class="options single" id="a2">
+    <div class="opt" onclick="pick('a2',this,'mega_ma')">
+      <div class="opt-letter">A</div>
+      <div><div class="opt-title">"$50B Merger Blocked — Regulator Finds Competition Risk in 14 Countries"</div><div class="opt-desc">M&A strategy colliding with antitrust law across borders</div></div>
+    </div>
+    <div class="opt" onclick="pick('a2',this,'sovereign')">
+      <div class="opt-letter">B</div>
+      <div><div class="opt-title">"Egypt Returns to Bond Markets Raising $2B — Why It Matters for Emerging Economies"</div><div class="opt-desc">Capital markets, sovereign finance, geopolitics</div></div>
+    </div>
+    <div class="opt" onclick="pick('a2',this,'pe_lbo')">
+      <div class="opt-letter">C</div>
+      <div><div class="opt-title">"Private Equity Giant Completes £8B Leveraged Buyout of UK Tech Firm"</div><div class="opt-desc">PE deal structure, LBO mechanics, sponsor-side advisory</div></div>
+    </div>
+    <div class="opt" onclick="pick('a2',this,'arbitration')">
+      <div class="opt-letter">D</div>
+      <div><div class="opt-title">"State Ordered to Pay $1.2B — Landmark Investment Treaty Arbitration Award"</div><div class="opt-desc">International disputes, arbitration, state liability</div></div>
+    </div>
+    <div class="opt" onclick="pick('a2',this,'finreg')">
+      <div class="opt-letter">E</div>
+      <div><div class="opt-title">"New AI Act Forces Banks to Overhaul Risk Models Overnight"</div><div class="opt-desc">Financial regulation, technology law, systemic change</div></div>
+    </div>
+  </div>
+  <div class="q-nav">
+    <button class="btn btn-outline" onclick="goPrev(2)">&larr; Back</button>
+    <button class="btn btn-primary btn-lg" onclick="goNext(2)">Next &rarr;</button>
+  </div>
+</div>
+
+<!-- Q4 -->
+<div class="q-card" id="q3">
+  <div class="q-tag">Question 4 of 12 — Career Trade-offs</div>
+  <div class="q-title">You can only pick one. Which matters more right now?</div>
+  <div class="q-sub">Be honest — there is no prestigious answer here.</div>
+  <div class="options" id="a3">
+    <div class="opt" onclick="pick('a3',this,'quality')">
+      <div class="opt-letter">A</div>
+      <div><div class="opt-title">Working on the most complex deals</div><div class="opt-desc">Even if the hours are brutal and pay slightly less</div></div>
+    </div>
+    <div class="opt" onclick="pick('a3',this,'money')">
+      <div class="opt-letter">B</div>
+      <div><div class="opt-title">Maximum earning potential</div><div class="opt-desc">I want to be paid what the market will bear for my skills</div></div>
+    </div>
+    <div class="opt" onclick="pick('a3',this,'balance')">
+      <div class="opt-letter">C</div>
+      <div><div class="opt-title">A sustainable career alongside a life</div><div class="opt-desc">Top-quality work, but not at the cost of everything else</div></div>
+    </div>
+    <div class="opt" onclick="pick('a3',this,'global')">
+      <div class="opt-letter">D</div>
+      <div><div class="opt-title">A genuinely international career</div><div class="opt-desc">Working across borders, living abroad, advising global clients</div></div>
+    </div>
+  </div>
+  <div class="q-nav">
+    <button class="btn btn-outline" onclick="goPrev(3)">&larr; Back</button>
+    <button class="btn btn-primary btn-lg" onclick="goNext(3)">Next &rarr;</button>
+  </div>
+</div>
+
+<!-- Q5 -->
+<div class="q-card" id="q4">
+  <div class="q-tag">Question 5 of 12 — Personality</div>
+  <div class="q-title">Which description fits you best in a group?</div>
+  <div class="q-sub">Think about how colleagues or teammates would actually describe you.</div>
+  <div class="options" id="a4">
+    <div class="opt" onclick="pick('a4',this,'prepared')">
+      <div class="opt-letter">A</div>
+      <div><div class="opt-title">The one who is most prepared</div><div class="opt-desc">Quiet, precise, always has the detail others missed</div></div>
+    </div>
+    <div class="opt" onclick="pick('a4',this,'connector')">
+      <div class="opt-letter">B</div>
+      <div><div class="opt-title">The one who brings people together</div><div class="opt-desc">Good at reading the room and finding consensus</div></div>
+    </div>
+    <div class="opt" onclick="pick('a4',this,'challenger')">
+      <div class="opt-letter">C</div>
+      <div><div class="opt-title">The one who challenges assumptions</div><div class="opt-desc">Asks difficult questions, intellectually combative</div></div>
+    </div>
+    <div class="opt" onclick="pick('a4',this,'driver')">
+      <div class="opt-letter">D</div>
+      <div><div class="opt-title">The one who gets things done</div><div class="opt-desc">Decisive, action-oriented, drives projects forward</div></div>
+    </div>
+  </div>
+  <div class="q-nav">
+    <button class="btn btn-outline" onclick="goPrev(4)">&larr; Back</button>
+    <button class="btn btn-primary btn-lg" onclick="goNext(4)">Next &rarr;</button>
+  </div>
+</div>
+
+<!-- Q6 -->
+<div class="q-card" id="q5">
+  <div class="q-tag">Question 6 of 12 — Geography</div>
+  <div class="q-title">Where do you want your career to take you?</div>
+  <div class="q-sub">Drag the slider to where you sit on this spectrum.</div>
+  <div style="margin:8px 0 4px">
+    <div class="spectrum-labels">
+      <span>Deep UK focus — be the best London corporate lawyer</span>
+      <span style="text-align:right">Fully global — live and work across continents</span>
+    </div>
+    <input type="range" min="1" max="10" value="5" id="a5" oninput="updateSlider()">
+    <div class="spectrum-val" id="a5label">Balanced UK / international</div>
+  </div>
+  <div class="q-nav">
+    <button class="btn btn-outline" onclick="goPrev(5)">&larr; Back</button>
+    <button class="btn btn-primary btn-lg" onclick="goNext(5)">Next &rarr;</button>
+  </div>
+</div>
+
+<!-- Q7 -->
+<div class="q-card" id="q6">
+  <div class="q-tag">Question 7 of 12 — Environment</div>
+  <div class="q-title">You are a trainee. Which scenario energises you more?</div>
+  <div class="q-sub">Both are real Magic Circle trainee experiences.</div>
+  <div class="options" id="a6">
+    <div class="opt" onclick="pick('a6',this,'small')">
+      <div class="opt-letter">A</div>
+      <div><div class="opt-title">One of 85 trainees</div><div class="opt-desc">You know almost everyone. Partners know your name. Real responsibility early. Tight community feel.</div></div>
+    </div>
+    <div class="opt" onclick="pick('a6',this,'large')">
+      <div class="opt-letter">B</div>
+      <div><div class="opt-title">One of 120 trainees</div><div class="opt-desc">Huge peer network. Endless secondment options. Constant deal flow. Unmatched global brand.</div></div>
+    </div>
+  </div>
+  <div class="q-nav">
+    <button class="btn btn-outline" onclick="goPrev(6)">&larr; Back</button>
+    <button class="btn btn-primary btn-lg" onclick="goNext(6)">Next &rarr;</button>
+  </div>
+</div>
+
+<!-- Q8 -->
+<div class="q-card" id="q7">
+  <div class="q-tag">Question 8 of 12 — Long-term</div>
+  <div class="q-title">Ten years from now — which version of yourself sounds most like you?</div>
+  <div class="q-sub">Pick the one that genuinely resonates — not the most impressive-sounding.</div>
+  <div class="options" id="a7">
+    <div class="opt" onclick="pick('a7',this,'partner')">
+      <div class="opt-letter">A</div>
+      <div><div class="opt-title">Partner at a Magic Circle firm</div><div class="opt-desc">Running client relationships, building a practice, at the top of the profession</div></div>
+    </div>
+    <div class="opt" onclick="pick('a7',this,'gc')">
+      <div class="opt-letter">B</div>
+      <div><div class="opt-title">General Counsel at a major company</div><div class="opt-desc">Leading legal strategy from inside the business</div></div>
+    </div>
+    <div class="opt" onclick="pick('a7',this,'usfirm')">
+      <div class="opt-letter">C</div>
+      <div><div class="opt-title">Moved to a US firm for elite pay</div><div class="opt-desc">Using MC training as a launchpad to Kirkland, Latham or Skadden</div></div>
+    </div>
+    <div class="opt" onclick="pick('a7',this,'own')">
+      <div class="opt-letter">D</div>
+      <div><div class="opt-title">Built something of your own</div><div class="opt-desc">Business, advisory firm, or moved into policy using your legal foundation</div></div>
+    </div>
+  </div>
+  <div class="q-nav">
+    <button class="btn btn-outline" onclick="goPrev(7)">&larr; Back</button>
+    <button class="btn btn-primary btn-lg" onclick="goNext(7)">Next &rarr;</button>
+  </div>
+</div>
+
+<!-- Q9 -->
+<div class="q-card" id="q8">
+  <div class="q-tag">Question 9 of 12 — Values</div>
+  <div class="q-title">Your firm is advising a large oil company on a controversial but legal acquisition. How do you feel?</div>
+  <div class="q-sub">Honest answers only. This reveals culture fit, not your moral character.</div>
+  <div class="options single" id="a8">
+    <div class="opt" onclick="pick('a8',this,'commercial')">
+      <div class="opt-letter">A</div>
+      <div><div class="opt-title">Completely fine — that is commercial law</div><div class="opt-desc">My job is to give the best advice, not judge the client's business.</div></div>
+    </div>
+    <div class="opt" onclick="pick('a8',this,'balanced')">
+      <div class="opt-letter">B</div>
+      <div><div class="opt-title">Fine as long as the firm balances it with pro bono</div><div class="opt-desc">Commercial work funds the pro bono I care about — I can live with the trade-off.</div></div>
+    </div>
+    <div class="opt" onclick="pick('a8',this,'esg')">
+      <div class="opt-letter">C</div>
+      <div><div class="opt-title">Uncomfortable — I want to work on ESG deals instead</div><div class="opt-desc">I want a firm that actively prioritises sustainable finance.</div></div>
+    </div>
+    <div class="opt" onclick="pick('a8',this,'caseby')">
+      <div class="opt-letter">D</div>
+      <div><div class="opt-title">It depends — I assess it case by case</div><div class="opt-desc">I have limits but I am not absolutist about it.</div></div>
+    </div>
+  </div>
+  <div class="q-nav">
+    <button class="btn btn-outline" onclick="goPrev(8)">&larr; Back</button>
+    <button class="btn btn-primary btn-lg" onclick="goNext(8)">Next &rarr;</button>
+  </div>
+</div>
+
+<!-- Q10 -->
+<div class="q-card" id="q9">
+  <div class="q-tag">Question 10 of 12 — You Outside Law</div>
+  <div class="q-title">What do you do when not studying? What are you genuinely good at outside academia?</div>
+  <div class="q-sub">Be specific — "chess" tells us more than "socialising". Hobbies reveal firm fit more than you think.</div>
+  <textarea class="q-input" id="a9" placeholder="e.g. I play competitive chess and obsessively follow financial markets. I coach junior football on weekends — I find the leadership side rewarding. Learning Arabic..."></textarea>
+  <div class="q-nav">
+    <button class="btn btn-outline" onclick="goPrev(9)">&larr; Back</button>
+    <button class="btn btn-primary btn-lg" onclick="goNext(9)">Next &rarr;</button>
+  </div>
+</div>
+
+<!-- Q11 -->
+<div class="q-card" id="q10">
+  <div class="q-tag">Question 11 of 12 — Sectors</div>
+  <div class="q-title">Which sectors genuinely interest you?</div>
+  <div class="q-sub">Select all that apply. Think about what you read about for pleasure, not what sounds impressive.</div>
+  <div class="tags" id="a10">
+    <div class="tag-opt" onclick="this.classList.toggle('on')">Technology &amp; AI</div>
+    <div class="tag-opt" onclick="this.classList.toggle('on')">Financial Services</div>
+    <div class="tag-opt" onclick="this.classList.toggle('on')">Healthcare &amp; Pharma</div>
+    <div class="tag-opt" onclick="this.classList.toggle('on')">Energy &amp; Climate</div>
+    <div class="tag-opt" onclick="this.classList.toggle('on')">Private Equity</div>
+    <div class="tag-opt" onclick="this.classList.toggle('on')">Sovereign &amp; Government</div>
+    <div class="tag-opt" onclick="this.classList.toggle('on')">Infrastructure</div>
+    <div class="tag-opt" onclick="this.classList.toggle('on')">Media &amp; Entertainment</div>
+    <div class="tag-opt" onclick="this.classList.toggle('on')">Defence &amp; Security</div>
+    <div class="tag-opt" onclick="this.classList.toggle('on')">Real Estate</div>
+    <div class="tag-opt" onclick="this.classList.toggle('on')">Emerging Markets</div>
+    <div class="tag-opt" onclick="this.classList.toggle('on')">Consumer &amp; Retail</div>
+  </div>
+  <div class="q-nav">
+    <button class="btn btn-outline" onclick="goPrev(10)">&larr; Back</button>
+    <button class="btn btn-primary btn-lg" onclick="goNext(10)">Next &rarr;</button>
+  </div>
+</div>
+
+<!-- Q12 -->
+<div class="q-card" id="q11">
+  <div class="q-tag">Question 12 of 12 — Anything Else</div>
+  <div class="q-title">Is there anything about you that does not fit neatly into the questions above?</div>
+  <div class="q-sub">Optional but often the most useful input. First-gen student, international background, strong view on one firm, specific experience — anything relevant.</div>
+  <textarea class="q-input" id="a11" placeholder="e.g. I am originally from Turkey and want to work on deals involving the Middle East. I did a year at a startup before university. Strong interest in Slaughter and May but unsure if I fit..."></textarea>
+  <div class="q-nav">
+    <button class="btn btn-outline" onclick="goPrev(11)">&larr; Back</button>
+    <button class="btn btn-dark btn-lg" id="matchBtn" onclick="runMatch()">&#x26A1; Find My Firm</button>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div class="loading-wrap" id="loadingWrap">
+  <div class="spinner"></div>
+  <div class="loading-title">Analysing your profile...</div>
+  <div class="loading-sub">Matching firm cultures, searching real cases, building your report</div>
+  <div class="loading-steps">
+    <div class="lstep" id="ls0"><div class="lstep-dot"></div>Reading your answers</div>
+    <div class="lstep" id="ls1"><div class="lstep-dot"></div>Matching firm cultures</div>
+    <div class="lstep" id="ls2"><div class="lstep-dot"></div>Scoring your dimensions</div>
+    <div class="lstep" id="ls3"><div class="lstep-dot"></div>Searching real cases online</div>
+    <div class="lstep" id="ls4"><div class="lstep-dot"></div>Writing your report</div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="resultsWrap" style="display:none"></div>
+
+</div>
+<div id="footer-root"></div>
+<script src="shared.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = SITE.nav('match');
+document.getElementById('footer-root').innerHTML = SITE.footer();
+
+var cur = 0;
+var ans = {};
+
+var sliderLabels = ['UK-focused','Mostly UK with some international','Balanced UK and international','Predominantly international','Fully global career'];
+
+function updateSlider() {
+  var v = parseInt(document.getElementById('a5').value);
+  var idx = Math.round((v - 1) / 9 * (sliderLabels.length - 1));
+  document.getElementById('a5label').textContent = sliderLabels[idx];
+}
+
+function pick(groupId, el, val) {
+  var group = document.getElementById(groupId);
+  if (!group) return;
+  group.querySelectorAll('.opt').forEach(function(o) { o.classList.remove('selected'); });
+  el.classList.add('selected');
+  ans[groupId] = val;
+}
+
+function getTags(groupId) {
+  var group = document.getElementById(groupId);
+  if (!group) return 'none selected';
+  var selected = [];
+  group.querySelectorAll('.on').forEach(function(t) { selected.push(t.textContent.trim()); });
+  return selected.length > 0 ? selected.join(', ') : 'none selected';
+}
+
+function updateProgress(q) {
+  var pct = Math.round(((q + 1) / 12) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressNum').textContent = (q + 1) + ' / 12';
+}
+
+function goNext(q) {
+  // Save text inputs
+  var inp = document.getElementById('a' + q);
+  if (inp && (inp.tagName === 'INPUT' || inp.tagName === 'TEXTAREA')) {
+    ans['a' + q] = inp.value.trim() || '(not provided)';
+  }
+  if (q === 5) {
+    ans['a5'] = sliderLabels[Math.round((parseInt(document.getElementById('a5').value) - 1) / 9 * (sliderLabels.length - 1))];
+  }
+  if (q === 10) {
+    ans['a10'] = getTags('a10');
+  }
+  document.getElementById('q' + q).classList.remove('active');
+  cur = q + 1;
+  var nextCard = document.getElementById('q' + cur);
+  if (nextCard) {
+    nextCard.classList.add('active');
+    updateProgress(cur);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function goPrev(q) {
+  document.getElementById('q' + q).classList.remove('active');
+  cur = q - 1;
+  document.getElementById('q' + cur).classList.add('active');
+  updateProgress(cur);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function animateLoading() {
+  var steps = ['ls0','ls1','ls2','ls3','ls4'];
+  var i = 0;
+  function tick() {
+    if (i > 0) {
+      document.getElementById(steps[i - 1]).classList.remove('on');
+      document.getElementById(steps[i - 1]).classList.add('done');
+    }
+    if (i < steps.length) {
+      document.getElementById(steps[i]).classList.add('on');
+      i++;
+      setTimeout(tick, 1000);
+    }
+  }
+  tick();
+}
+
+function showErr(title, detail) {
+  document.getElementById('loadingWrap').style.display = 'none';
+  var wrap = document.getElementById('resultsWrap');
+  wrap.style.display = 'block';
+  var html = '<div class="err-box">';
+  html += '<div class="err-title">&#9888; ' + title + '</div>';
+  html += '<div class="err-detail">' + detail + '</div>';
+  html += '<button class="btn btn-outline" onclick="location.reload()">Try Again</button>';
+  html += '</div>';
+  wrap.innerHTML = html;
+}
+
+async function runMatch() {
+  // Save last answers
+  ans['a11'] = document.getElementById('a11').value.trim() || '(not provided)';
+  ans['a10'] = getTags('a10');
+
+  document.getElementById('matchBtn').disabled = true;
+  document.querySelectorAll('.q-card').forEach(function(c) { c.style.display = 'none'; });
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('loadingWrap').style.display = 'block';
+  animateLoading();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  var profile = 'Student profile:\n' +
+    '1. Education: ' + (ans['a0'] || 'not provided') + '\n' +
+    '2. Under pressure thinking: ' + (ans['a1'] || 'not provided') + '\n' +
+    '3. Headline interest (practice signal): ' + (ans['a2'] || 'not provided') + '\n' +
+    '4. Career priority: ' + (ans['a3'] || 'not provided') + '\n' +
+    '5. Personality type: ' + (ans['a4'] || 'not provided') + '\n' +
+    '6. Geography: ' + (ans['a5'] || 'balanced') + '\n' +
+    '7. Firm size preference: ' + (ans['a6'] || 'not provided') + '\n' +
+    '8. 10-year ambition: ' + (ans['a7'] || 'not provided') + '\n' +
+    '9. Values on client work: ' + (ans['a8'] || 'not provided') + '\n' +
+    '10. Hobbies and personality: ' + (ans['a9'] || 'not provided') + '\n' +
+    '11. Sectors: ' + (ans['a10'] || 'not provided') + '\n' +
+    '12. Additional context: ' + (ans['a11'] || 'not provided');
+
+  var matchPrompt = 'You are a Magic Circle careers advisor. Match this student to the best Magic Circle firm.\n\n' + profile + '\n\nFirm differentiators:\n- A&O Shearman: Largest (3900 lawyers), banking/finance strength, post-merger integration, formal culture\n- Clifford Chance: Most global, capital markets/PE/disputes, tech-forward (CC Advance), open culture\n- Freshfields: Record revenues, US expansion, elite M&A/antitrust/disputes, intense intellectual culture\n- Linklaters: Debt capital markets/emerging markets leader, fastest US growth, collaborative culture\n- Slaughter and May: Smallest (~500), no billing targets, best friend network, highest PEP, collegiate culture\n\nReturn ONLY valid JSON with no markdown:\n{"top_firm":"exact name","top_pct":75,"top_tagline":"one sentence why","why_fit":"3-4 sentences referencing their actual answers","personality_insight":"2 sentences on what answers reveal","watch_out":"one honest concern","cover_letter_angle":"specific concrete angle for their cover letter","scores":{"A&O Shearman":70,"Clifford Chance":65,"Freshfields":80,"Linklaters":60,"Slaughter and May":55},"dimensions":{"Practice fit":80,"Culture match":75,"Geography":70,"Career trajectory":85,"Values":75},"second_firm":"name","second_reason":"one sentence"}';
+
+  var matchText, matchData, match;
+
+  // Call 1: Match analysis
+  try {
+    var r1 = await fetch('/.netlify/functions/ai', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: matchPrompt, search: false })
+    });
+    matchText = await r1.text();
+  } catch(e) {
+    showErr('Cannot connect to AI backend', 'fetch error: ' + e.message + '\n\nAre you on the Netlify URL? The AI only works when deployed, not when opened locally from a file.');
+    return;
+  }
+
+  if (!matchText || matchText.trim() === '') {
+    showErr('Empty response from backend', 'The function returned no data. Check Netlify function logs.');
+    return;
+  }
+
+  try {
+    matchData = JSON.parse(matchText);
+  } catch(e) {
+    showErr('Backend returned non-JSON', matchText.slice(0, 600));
+    return;
+  }
+
+  if (matchData.error) {
+    showErr('AI API Error', matchData.error + (matchData.raw ? '\n\nRaw: ' + matchData.raw : ''));
+    return;
+  }
+
+  if (!matchData.text) {
+    showErr('No text in response', JSON.stringify(matchData).slice(0, 600));
+    return;
+  }
+
+  try {
+    var cleaned = matchData.text.replace(/```json/g, '').replace(/```/g, '').trim();
+    match = JSON.parse(cleaned);
+  } catch(e) {
+    showErr('Could not parse AI match result', 'Parse error: ' + e.message + '\n\nRaw AI text:\n' + matchData.text.slice(0, 600));
+    return;
+  }
+
+  // Call 2: Real cases with web search
+  var casesText = 'Case search unavailable.';
+  var caseSources = [];
+  try {
+    var casePrompt = 'Search for 3 real recent (2023-2025) legal cases or deals that ' + match.top_firm + ' worked on. Student interests: ' + (ans['a2'] || 'general commercial') + ', sectors: ' + (ans['a'+'10'] || 'general') + ' For each deal: name it, describe the firm role, explain why this student would find it interesting. Use real names and dates only.';
+    var r2 = await fetch('/.netlify/functions/ai', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: casePrompt, search: true })
+    });
+    var caseRaw = await r2.text();
+    var caseData = JSON.parse(caseRaw);
+    if (caseData.text) {
+      casesText = caseData.text;
+      caseSources = caseData.sources || [];
+    }
+  } catch(e) {
+    casesText = 'Live case search could not complete, but your firm match above is ready.';
+  }
+
+  document.getElementById('loadingWrap').style.display = 'none';
+  renderResults(match, casesText, caseSources);
+}
+
+var firmColors = {
+  'A&O Shearman': '#0047AB',
+  'Clifford Chance': '#b8950a',
+  'Freshfields': '#C8102E',
+  'Linklaters': '#1a1a2e',
+  'Slaughter and May': '#2e7d32'
+};
+var firmLinks = {
+  'A&O Shearman': 'ao',
+  'Clifford Chance': 'cc',
+  'Freshfields': 'fresh',
+  'Linklaters': 'link',
+  'Slaughter and May': 'slaughter'
+};
+
+function renderResults(match, casesText, sources) {
+  var col = firmColors[match.top_firm] || '#2563eb';
+  var slug = firmLinks[match.top_firm] || '';
+
+  var othersHtml = '';
+  var otherFirms = Object.keys(match.scores || {}).filter(function(n) { return n !== match.top_firm; });
+  otherFirms.sort(function(a, b) { return match.scores[b] - match.scores[a]; });
+  otherFirms.forEach(function(name) {
+    var pct = match.scores[name] || 0;
+    var c = firmColors[name] || '#999';
+    var lnk = firmLinks[name] || '';
+    othersHtml += '<div class="other-row" onclick="window.location=\'firms.html#' + lnk + '\'">' +
+      '<div class="other-dot" style="background:' + c + '"></div>' +
+      '<span class="other-name">' + name + '</span>' +
+      '<div class="other-track"><div class="other-bar" style="width:' + pct + '%;background:' + c + '"></div></div>' +
+      '<span class="other-pct" style="color:' + c + '">' + pct + '%</span>' +
+      '</div>';
+  });
+
+  var dimsHtml = '';
+  Object.keys(match.dimensions || {}).forEach(function(dim) {
+    var val = match.dimensions[dim] || 0;
+    dimsHtml += '<div class="dim-row">' +
+      '<span class="dim-label">' + dim + '</span>' +
+      '<div class="dim-track"><div class="dim-fill" data-w="' + val + '" style="background:' + col + '"></div></div>' +
+      '<span class="dim-val" style="color:' + col + '">' + val + '</span>' +
+      '</div>';
+  });
+
+  var sourcesHtml = '';
+  if (sources && sources.length > 0) {
+    sourcesHtml = '<div style="margin-top:14px;padding:12px 14px;background:#f8f9fb;border:1px solid var(--border);border-radius:4px;font-size:11.5px;color:var(--muted)">' +
+      '<strong>Sources searched:</strong> ';
+    sources.slice(0, 4).forEach(function(s, i) {
+      if (i > 0) sourcesHtml += ' &middot; ';
+      sourcesHtml += '<a href="' + s.url + '" target="_blank" style="color:#2563eb">' + s.title + '</a>';
+    });
+    sourcesHtml += '</div>';
+  }
+
+  var html = '';
+
+  // Hero
+  html += '<div class="result-hero" style="background:linear-gradient(135deg,' + col + ',' + col + 'dd)">' +
+    '<div>' +
+      '<div class="result-badge">Your Best Match</div>' +
+      '<div class="result-firm">' + match.top_firm + '</div>' +
+      '<div class="result-tagline">' + (match.top_tagline || '') + '</div>' +
+    '</div>' +
+    '<div class="result-pct-box">' +
+      '<div class="result-pct">' + (match.top_pct || 0) + '%</div>' +
+      '<div class="result-pct-label">Match Score</div>' +
+    '</div>' +
+  '</div>';
+
+  // Grid
+  html += '<div class="result-grid">';
+
+  html += '<div class="rbox full"><div class="rbox-title">&#x1F3AF; Why This Firm Fits You</div><div class="rbox-body">' + (match.why_fit || '') + '</div></div>';
+
+  html += '<div class="rbox"><div class="rbox-title">&#x1F9E0; What Your Answers Reveal</div><div class="rbox-body">' + (match.personality_insight || '') + '</div></div>';
+
+  html += '<div class="rbox"><div class="rbox-title">&#x1F4CA; Match Breakdown</div>' + dimsHtml + '</div>';
+
+  html += '<div class="rbox full"><div class="rbox-title">&#x1F4BC; Real Cases at ' + match.top_firm + ' That Align With Your Interests</div><div class="rbox-body">' + casesText.replace(/\n/g, '<br>') + '</div>' + sourcesHtml + '</div>';
+
+  html += '<div class="rbox full"><div class="rbox-title">&#x270D; Your Cover Letter Opening Angle</div><div class="cl-box">' + (match.cover_letter_angle || '') + '</div></div>';
+
+  html += '<div class="rbox full"><div class="rbox-title">&#x1F4A1; One Thing to Consider</div><div class="rbox-body">' + (match.watch_out || '') + '</div></div>';
+
+  html += '</div>';
+
+  // Other firms
+  html += '<div style="margin-top:8px"><div class="section-label">How You Match All Five Firms</div>';
+  html += '<div style="font-size:12px;color:var(--muted);margin-bottom:8px">Click any firm to view their profile</div>';
+  html += '<div class="other-firms">' + othersHtml + '</div>';
+  if (match.second_firm) {
+    html += '<div style="margin-top:10px;padding:14px 16px;background:var(--white);border:1px solid var(--border);border-radius:4px;font-size:13.5px"><strong>Also consider:</strong> ' + match.second_firm + ' — ' + (match.second_reason || '') + '</div>';
+  }
+  html += '</div>';
+
+  // Actions
+  html += '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px">';
+  html += '<a href="firms.html#' + slug + '" class="btn btn-primary btn-lg">View ' + match.top_firm + ' Profile &rarr;</a>';
+  html += '<a href="interview.html" class="btn btn-dark btn-lg">Interview Prep &rarr;</a>';
+  html += '<button onclick="location.reload()" class="btn btn-outline btn-lg">Start Again</button>';
+  html += '</div>';
+
+  html += '<div style="margin-top:20px;padding:12px 16px;background:var(--light);border-radius:4px;font-size:11.5px;color:var(--muted)">Match generated by MagicCircleHub AI. For educational purposes — always research thoroughly and speak to current trainees.</div>';
+
+  var wrap = document.getElementById('resultsWrap');
+  wrap.innerHTML = html;
+  wrap.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Animate bars after render
+  setTimeout(function() {
+    document.querySelectorAll('.dim-fill[data-w]').forEach(function(b) {
+      b.style.width = b.getAttribute('data-w') + '%';
+    });
+  }, 100);
+}
+</script>
+</body>
+</html>

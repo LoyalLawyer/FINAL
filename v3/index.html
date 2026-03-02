@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MagicCircleHub — Daily Intelligence for Magic Circle Applicants</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="nav-root"></div>
+
+<div class="page">
+
+  <!-- HERO BANNER -->
+  <div style="background:linear-gradient(135deg,#0f1117 0%,#1e3a5f 100%);border-radius:6px;padding:40px 48px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#60a5fa;margin-bottom:10px;">Daily Intelligence</div>
+      <h1 style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:white;line-height:1.2;margin-bottom:10px;">Magic Circle Hub</h1>
+      <p style="font-size:14px;color:#94a3b8;max-width:440px;line-height:1.6;">News, analysis and application intelligence for students targeting A&O Shearman, Clifford Chance, Freshfields, Linklaters and Slaughter and May.</p>
+    </div>
+    <a href="match.html" style="background:#2563eb;color:white;padding:14px 28px;border-radius:6px;font-weight:700;font-size:14px;white-space:nowrap;flex-shrink:0;">&#x26A1; Find My Firm — Free AI Tool</a>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <!-- FILTERS -->
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" onclick="filterNews('all',this)">All News</button>
+        <button class="filter-btn" onclick="filterNews('ao',this)">A&O Shearman</button>
+        <button class="filter-btn" onclick="filterNews('cc',this)">Clifford Chance</button>
+        <button class="filter-btn" onclick="filterNews('fresh',this)">Freshfields</button>
+        <button class="filter-btn" onclick="filterNews('link',this)">Linklaters</button>
+        <button class="filter-btn" onclick="filterNews('slaughter',this)">Slaughter and May</button>
+      </div>
+
+      <!-- NEWS GRID -->
+      <div id="newsGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;"></div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div>
+      <!-- Find My Firm CTA -->
+      <div style="background:linear-gradient(135deg,#1e3a5f,#0f1117);border-radius:6px;padding:24px;margin-bottom:16px;text-align:center;">
+        <div style="font-size:32px;margin-bottom:10px;">🎯</div>
+        <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:white;margin-bottom:8px;">Which firm fits you?</div>
+        <p style="font-size:12.5px;color:#94a3b8;margin-bottom:16px;line-height:1.6;">Answer 12 questions. Get a personalised AI match with real cases.</p>
+        <a href="match.html" style="display:block;background:#2563eb;color:white;padding:10px 20px;border-radius:6px;font-weight:700;font-size:13px;">Find My Firm →</a>
+      </div>
+
+      <!-- TC Deadlines -->
+      <div class="widget">
+        <div class="widget-title">⏰ Upcoming TC Deadlines</div>
+        <div class="widget-body">
+          <div class="widget-row"><span>A&O Shearman</span><span style="font-weight:700;color:#dc2626;">31 Jan 2026</span></div>
+          <div class="widget-row"><span>Clifford Chance</span><span style="font-weight:700;color:#d97706;">15 Feb 2026</span></div>
+          <div class="widget-row"><span>Freshfields</span><span style="font-weight:700;color:#d97706;">28 Feb 2026</span></div>
+          <div class="widget-row"><span>Linklaters</span><span style="font-weight:700;color:#059669;">31 Mar 2026</span></div>
+          <div class="widget-row"><span>Slaughter and May</span><span style="font-weight:700;color:#059669;">Apr 2026</span></div>
+          <a href="deadlines.html" style="display:block;text-align:center;font-size:12px;color:#2563eb;font-weight:600;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">View all deadlines →</a>
+        </div>
+      </div>
+
+      <!-- NQ Salaries -->
+      <div class="widget">
+        <div class="widget-title">💰 NQ Salaries 2025</div>
+        <div class="widget-body">
+          <div class="widget-row"><span>A&O Shearman</span><span style="font-weight:700;">£150,000</span></div>
+          <div class="widget-row"><span>Clifford Chance</span><span style="font-weight:700;">£150,000</span></div>
+          <div class="widget-row"><span>Freshfields</span><span style="font-weight:700;">£150,000</span></div>
+          <div class="widget-row"><span>Linklaters</span><span style="font-weight:700;">£150,000</span></div>
+          <div class="widget-row"><span>Slaughter and May</span><span style="font-weight:700;">£150,000</span></div>
+          <a href="salaries.html" style="display:block;text-align:center;font-size:12px;color:#2563eb;font-weight:600;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">Full salary breakdown →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="footer-root"></div>
+
+<!-- ARTICLE MODAL -->
+<div id="modal" style="display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.5);overflow-y:auto;padding:40px 20px;" onclick="closeModal(event)">
+  <div style="background:white;max-width:760px;margin:0 auto;border-radius:8px;overflow:hidden;" onclick="event.stopPropagation()">
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script src="shared.js"></script>
+<script>
+document.getElementById('nav-root').innerHTML = SITE.nav('news');
+document.getElementById('footer-root').innerHTML = SITE.footer();
+
+var NEWS = [
+  {
+    id:1, firm:'fresh', firmName:'Freshfields', firmClass:'firm-fresh',
+    category:'Revenue', date:'Jan 2026', emoji:'📈',
+    title:'Freshfields Reports Record £2.1bn Revenue in 2025',
+    excerpt:'The firm\'s US expansion strategy pays off, with transatlantic M&A and disputes practices driving double-digit growth for the second consecutive year.',
+    body: '<p>Freshfields Bruckhaus Deringer reported record global revenues of £2.1bn for the financial year ending April 2025, marking a 14% increase year-on-year and cementing its position as the Magic Circle\'s fastest-growing firm by revenue growth rate.</p><p>The performance was driven primarily by its US practice, which has expanded rapidly since opening its New York office in 2023. The firm\'s transatlantic M&A practice and high-stakes litigation teams were the standout performers, with the firm advising on several landmark cross-border transactions.</p><h2>What This Means for Your Application</h2><p>Freshfields\' US expansion means the firm is actively seeking commercially minded candidates who understand transatlantic deal dynamics. In interviews, you should demonstrate awareness of how US market entry affects deal structure, regulatory clearances and client expectations.</p>',
+    appAngle:'Mention Freshfields\' US strategy in your cover letter. Understanding why they opened in New York and what it means for M&A practice differentiates you from generic applicants who just say "global reach".'
+  },
+  {
+    id:2, firm:'cc', firmName:'Clifford Chance', firmClass:'firm-cc',
+    category:'Private Equity', date:'Jan 2026', emoji:'🏦',
+    title:'Clifford Chance Hires Star PE Partner from Kirkland',
+    excerpt:'A lateral hire signals the firm\'s ambition to capture more of the booming UK and European private equity market, competing directly with US firms on their home turf.',
+    body:'<p>Clifford Chance has made a significant lateral hire, bringing in a top private equity partner from Kirkland & Ellis\'s London office. The move signals CC\'s intent to aggressively compete for sponsor-side PE mandates that have historically flowed to US firms in London.</p><p>The hire comes as PE deal flow rebounds in 2025 after a subdued 2023-24 period marked by high interest rates. With rates falling, leveraged buyout activity is picking up across Europe, and CC is positioning to capture a larger share.</p><h2>What This Means for Your Application</h2><p>CC is actively building out its PE offering — this is a strategic priority. If you\'re interested in private equity, this is a strong talking point for your CC application.</p>',
+    appAngle:'Mention CC\'s PE growth ambitions. Research the specific sectors they are targeting for sponsor-side work — tech and healthcare PE are current priorities.'
+  },
+  {
+    id:3, firm:'link', firmName:'Linklaters', firmClass:'firm-link',
+    category:'Capital Markets', date:'Dec 2025', emoji:'🌍',
+    title:'Linklaters Advises on £2bn Egyptian Sovereign Bond',
+    excerpt:'The firm\'s emerging markets capital markets practice continues its dominance, advising the Arab Republic of Egypt on its return to international bond markets.',
+    body:'<p>Linklaters advised the Arab Republic of Egypt on a £2 billion sovereign bond issuance, one of the largest emerging market debt transactions of Q4 2025. The deal underscores Linklaters\' position as the leading Magic Circle firm for emerging market debt capital markets.</p><p>The transaction required navigation of complex geopolitical conditions, international investor relations across three continents, and coordination with the IMF\'s ongoing Egypt programme. Linklaters\' Cairo and London offices co-led the transaction.</p><h2>What This Means for Your Application</h2><p>Linklaters\' emerging markets capital markets practice is genuinely world-class. If this type of work interests you, Linklaters should be your primary target — no other MC firm comes close in this space.</p>',
+    appAngle:'If you have any connection to emerging markets — language skills, personal background, previous study — connect it explicitly to Linklaters\' practice in your application.'
+  },
+  {
+    id:4, firm:'ao', firmName:'A&O Shearman', firmClass:'firm-ao',
+    category:'Merger Integration', date:'Dec 2025', emoji:'🔄',
+    title:'A&O Shearman One Year On: How the Mega-Merger is Playing Out',
+    excerpt:'Twelve months after the historic Allen & Overy / Shearman & Sterling combination, we assess what\'s working, what\'s not, and what it means for trainees.',
+    body:'<p>One year on from the historic merger between Allen & Overy and Shearman & Sterling, the combined firm is navigating the complex integration of two very different legal cultures. With 3,900 lawyers across 48 offices, A&O Shearman is now the largest Magic Circle firm by headcount.</p><p>The integration has brought significant benefits — particularly in the US, where the Shearman brand gives the firm genuine New York market credibility for the first time. However, internal sources point to ongoing cultural challenges as the two firms\' distinct approaches to client service and internal hierarchy continue to be reconciled.</p><h2>What This Means for Your Application</h2><p>A&O Shearman applicants should engage with the merger story. Avoid generic statements about "global platform" — instead, show you understand the specific strategic rationale and what the combination means for clients in banking and finance.</p>',
+    appAngle:'Show you understand the merger\'s strategic rationale: A&O\'s strength in international banking + Shearman\'s US corporate practice = a true transatlantic powerhouse. Be specific about what this means for clients.'
+  },
+  {
+    id:5, firm:'slaughter', firmName:'Slaughter and May', firmClass:'firm-slaughter',
+    category:'Strategy', date:'Nov 2025', emoji:'🏆',
+    title:'Slaughter and May: Why the Boutique Strategy Still Wins',
+    excerpt:'While rivals race to build global networks, Slaughter and May\'s best friend model continues to generate the highest profit per equity partner in the Magic Circle.',
+    body:'<p>Slaughter and May remains the outlier in the Magic Circle. While every other firm in the group has pursued aggressive international expansion, Slaughter has remained a deliberately focused London-headquartered firm with approximately 500 lawyers — a fraction of its peers.</p><p>The "best friend" model — where Slaughter refers international work to trusted partner firms rather than opening its own offices — has proven remarkably resilient. Profit per equity partner remains the highest in the Magic Circle, and the firm consistently attracts the highest-performing candidates from top universities.</p><h2>What This Means for Your Application</h2><p>Slaughter applicants must understand why the model works, not just that it exists. The key insight: by not having offices to fill globally, every lawyer is genuinely elite-selected. The culture is different as a result.</p>',
+    appAngle:'Don\'t just say you admire Slaughter\'s quality. Explain why the best friend model specifically produces better outcomes for clients on complex UK M&A than a global network would.'
+  },
+  {
+    id:6, firm:'ao', firmName:'A&O Shearman', firmClass:'firm-ao',
+    category:'Infrastructure', date:'Nov 2025', emoji:'⚡',
+    title:'A&O Shearman Leads £4.2bn UK Energy Infrastructure Deal',
+    excerpt:'The firm\'s infrastructure and energy team advises on one of the largest renewables financing transactions in UK history, involving 12 lenders across 5 jurisdictions.',
+    body:'<p>A&O Shearman\'s infrastructure and energy finance team advised lenders on a £4.2bn financing for a major UK offshore wind and grid infrastructure project. The transaction involved 12 international lenders, project sponsors from three countries, and required regulatory approvals across five jurisdictions.</p><p>The deal highlights A&O Shearman\'s particular strength in energy transition financing — an area that is seeing explosive growth as the UK accelerates its clean energy investment programme.</p><h2>What This Means for Your Application</h2><p>Energy transition is a huge growth area for infrastructure finance. If you have any interest in climate, energy policy or infrastructure, A&O Shearman\'s practice in this area is genuinely market-leading.</p>',
+    appAngle:'Infrastructure finance intersects law, policy and engineering. If you have a science, economics or policy background, connect it to A&O\'s energy transition practice — the commercial logic is compelling.'
+  }
+];
+
+var current = 'all';
+
+function filterNews(firm, btn) {
+  current = firm;
+  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderNews();
+}
+
+function renderNews() {
+  var filtered = current === 'all' ? NEWS : NEWS.filter(function(n) { return n.firm === current; });
+  var grid = document.getElementById('newsGrid');
+  grid.innerHTML = filtered.map(function(n, i) {
+    return '<div class="news-card" onclick="openArticle(' + n.id + ')" style="animation-delay:' + (i*0.05) + 's">' +
+      '<div class="news-card-hero" style="background:linear-gradient(135deg,#f8f9fb,#e8eaed)"><span style="font-size:44px">' + n.emoji + '</span></div>' +
+      '<div class="news-card-body">' +
+        '<div class="news-card-meta"><span class="firm-chip ' + n.firmClass + '">' + n.firmName + '</span><span class="chip">' + n.category + '</span></div>' +
+        '<div class="news-card-title">' + n.title + '</div>' +
+        '<div class="news-card-excerpt">' + n.excerpt + '</div>' +
+        '<div class="news-card-footer"><span>' + n.date + '</span><span style="color:#2563eb;font-weight:600;font-size:12px;">Read more →</span></div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function openArticle(id) {
+  var art = NEWS.find(function(n) { return n.id === id; });
+  if (!art) return;
+  document.getElementById('modal-content').innerHTML =
+    '<div style="padding:0">' +
+      '<div style="height:200px;background:linear-gradient(135deg,#0f1117,#1e3a5f);display:flex;align-items:center;justify-content:center;font-size:64px">' + art.emoji + '</div>' +
+      '<div style="padding:32px 36px">' +
+        '<div style="display:flex;gap:8px;margin-bottom:14px"><span class="firm-chip ' + art.firmClass + '">' + art.firmName + '</span><span class="chip">' + art.category + '</span><span class="chip">' + art.date + '</span></div>' +
+        '<h1 style="font-family:\'Playfair Display\',serif;font-size:28px;font-weight:900;line-height:1.3;margin-bottom:20px">' + art.title + '</h1>' +
+        '<div class="article-body">' + art.body + '</div>' +
+        '<div class="application-box" style="margin-top:24px">' +
+          '<div class="application-box-title">&#x1F4CB; Application Angle</div>' +
+          '<p>' + art.appAngle + '</p>' +
+        '</div>' +
+        '<div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border);display:flex;gap:10px">' +
+          '<a href="firms.html#' + art.firm + '" style="padding:9px 18px;background:#2563eb;color:white;border-radius:6px;font-size:13px;font-weight:600">View ' + art.firmName + ' Profile →</a>' +
+          '<button onclick="closeModal()" style="padding:9px 18px;background:var(--light);color:var(--ink);border-radius:6px;font-size:13px;font-weight:600;border:none;cursor:pointer">Close</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  document.getElementById('modal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal')) {
+    document.getElementById('modal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('keydown', function(e) { if(e.key==='Escape') closeModal(); });
+
+renderNews();
+</script>
+</body>
+</html>
